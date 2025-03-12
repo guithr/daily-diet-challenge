@@ -4,7 +4,9 @@ import { env } from './env'
 
 const app = fastify()
 
-app.register(usersRoutes)
+app.register(usersRoutes, {
+  prefix: 'users',
+})
 
 app
   .listen({
