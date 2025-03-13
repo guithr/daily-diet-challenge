@@ -18,7 +18,7 @@ export async function usersRoutes(app: FastifyInstance) {
       response.cookie('sessionId', sessionId, {
         path: '/',
         maxAge: 60 * 60 * 24 * 7, // 7 days
-        //        s     m    h   d
+        //       s     m    h   d
       })
     }
 
@@ -32,21 +32,5 @@ export async function usersRoutes(app: FastifyInstance) {
     })
 
     return response.status(201).send()
-  })
-
-  app.get('/', async () => {
-    const users = await knex('users').select()
-    return { users }
-  })
-
-  app.get('/:id', async (request) => {
-    const getUserParamsSchema = z.object({
-      id: z.string().uuid(),
-    })
-    const { id } = getUserParamsSchema.parse(request.params)
-
-    const user = await knex('users').where('id', id).first()
-
-    return { user }
   })
 }
