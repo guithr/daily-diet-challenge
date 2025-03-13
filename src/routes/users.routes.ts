@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { randomUUID } from 'node:crypto'
-import { z } from 'zod'
 import { knex } from '../database'
+import { z } from 'zod'
 
 export async function usersRoutes(app: FastifyInstance) {
   app.post('/', async (request, response) => {
@@ -21,5 +21,21 @@ export async function usersRoutes(app: FastifyInstance) {
     })
 
     return response.status(201).send()
+  })
+
+  app.get('/', async () => {
+    const users = await knex('users').select()
+    return { users }
+  })
+
+  app.get('/:id', async (request) => {
+    const getUserParamsSchema = z.object({
+      id: z.string().uuid(),
+    })
+    const { id } = getUserParamsSchema.parse(request.params)
+
+    const user = await knex('users').where('id', id).first()
+
+    return { user }
   })
 }
