@@ -1,6 +1,8 @@
 ### Regras da aplicação
 
 - [x] Deve ser possível criar um usuário
+- [x] Deve ser possível listar todos os usuário
+- [x] Deve ser possível listar um unico os usuário através do ID
 - [] Deve ser possível identificar o usuário entre as requisições
 - [] Deve ser possível registrar uma refeição feita, com as seguintes informações:
   > *As refeições devem ser relacionadas a um usuário.*
