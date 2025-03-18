@@ -16,8 +16,8 @@ describe('Users routes', () => {
 
   // Antes de cada teste, reseta o banco de dados para garantir um ambiente limpo
   beforeEach(() => {
-    execSync('npm run knex migrate:rollback --all') // Remove todas as migrations
-    execSync('npm run knex migrate:latest') // Reaplica todas as migrations
+    execSync('npm run knex -- migrate:rollback --all') // Remove todas as migrations
+    execSync('npm run knex -- migrate:latest') // Reaplica todas as migrations
   })
 
   it('should be able to create a new user', async () => {
